@@ -3,6 +3,8 @@ var valor2;
 var operador;
 var resultado;
 
+
+
 function teclaNumerica(numero) {
 
     if (resultado == null) {
@@ -73,32 +75,4 @@ function calcular(operador, valor1, valor2) {
             final = parseFloat(valor1) / parseFloat(valor2);
             return final;
     }
-}
-
-function salvarDados() {
-
-    var lista_dados = [];
-
-    lista_dados[0] = document.getElementById("nome").value
-    lista_dados[1] = document.getElementById("sobrenome").value
-    lista_dados[2] = document.getElementById("cargo").value
-    lista_dados[3] = document.getElementById("email").value
-    lista_dados[4] = document.getElementById("admissao").value
-    lista_dados[5] = document.getElementById("salario").value
-    lista_dados[6] = document.getElementById("desconto").value
-
-    localStorage.setItem("lista_dados_envio", JSON.stringify(lista_dados));
-}
-
-function recuperarDados() {
-
-    var lista_dados = JSON.parse(localStorage.getItem("lista_dados_envio"));
-
-    document.getElementById("nome").value = lista_dados[0];
-    document.getElementById("sobrenome").value = lista_dados[1];
-    document.getElementById("cargo").value = lista_dados[2];
-    document.getElementById("email").value = lista_dados[3];
-    document.getElementById("admissao").value = lista_dados[4];
-    document.getElementById("salario").value = lista_dados[5];
-    document.getElementById("desconto").value = lista_dados[6];
 }

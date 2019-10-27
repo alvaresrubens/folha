@@ -6,69 +6,127 @@
         Calculadora 2.0
     </title>
     <script type="text/javascript" src="calculadora2.js"></script>
+    <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" type="text/css" href="calculadora2.css" />
 
-    <body>
-        <fieldset>
-            <div>Calculadora 2.0 - CIN7928-06342B (20192) - Tópicos Especiais em Informação e Tecnologia </div>
+<body>
+    <fieldset>
+        <div>Calculadora 2.0 - CIN7928-06342B (20192) - Tópicos Especiais em Informação e Tecnologia </div>
 
-        </fieldset>
+    </fieldset>
 
-        <div class="container">
-            <div class='row-container'>
-                <div> <a class="menu" href="calculadora2.html">Calculadora</a> </div>
-                <div> <a class="menu" href="folha.html">Folha de pagamento </a> </div>
-            </div>
+    <div class="container">
+        <div class='row-container'>
+            <div> <a class="menu" href="calculadora2.html">Calculadora</a> </div>
+            <div> <a class="menu" href="folha.html">Folha de pagamento </a> </div>
         </div>
-        <div class="container">
-            <div class="texto">Cadastro de Funcionário </div>
-        </div>
-        <div class="container">
-            <div class='row-container'>
-                <div> <a class="visorOperacao" href="incluir.html">Incluir funcionários</a> </div>
-                <div> <a class="visorOperacao" href="visualizar.html">Visualizar funcionários</a> </div>
+    </div>
+    <div class="container">
+        <div class="texto">Cadastro de Funcionário </div>
+    </div>
+    <div class="container">
+        <div class='row-container'>
+            <div> <a class="visorOperacao" href="incluir.html">Incluir funcionários</a> </div>
+            <div> <a class="visorOperacao" href="visualizar.html">Visualizar funcionários</a> </div>
 
-            </div>
         </div>
+    </div>
 
-        <div class="container">
-            <div class='row-container'>
-                <div class="texto">Nome: </div>
-                <div class="item"><input class="visor" id="nome" type="text"></div>
-            </div>
-            <div class='row-container'>
-                <div class="texto">Sobrenome: </div>
-                <div class="item"><input class="visor" id="sobrenome" type="text"></div>
-            </div>
-            <div class='row-container'>
-                <div class="texto">Cargo: </div>
-                <div class="item"><input class="visor" id="cargo" type="text"></div>
-            </div>
-            <div class='row-container'>
-                <div class="texto">E-mail: </div>
-                <div class="item"><input class="visor" id="email" type="text"></div>
-            </div>
-            <div class='row-container'>
-                <div class="texto">Data de admissão: </div>
-                <div class="item"><input class="visor" id="admissao" type="text"></div>
-            </div>
-            <div class='row-container'>
-                <div class="texto">Salário bruto (em R$): </div>
-                <div class="item"><input class="visor" id="salario" type="text"></div>
-            </div>
-            <div class='row-container'>
-                <div class="texto">Descontos (em%): </div>
-                <div class="item"><input class="visor" id="desconto" type="text"></div>
-            </div>
+    <div class="container" id="inputFuncionarios">
+        <div class='row-container'>
+            <div class="texto">Nome: </div>
+            <div class="item"><input class="visor" v-model="nome"></div>
         </div>
 
-        <div class="container">
-            <div class='row-container'>
-                <div class="item"><button class="visorOperacao" type="button" onclick="salvarDados()">Incluir</button></div>
-            </div>
+        <div class='row-container'>
+            <div class="texto">Sobrenome: </div>
+            <div class="item"><input class="visor" v-model="sobrenome"></div>
         </div>
+        <div class='row-container'>
+            <div class="texto">Cargo: </div>
+            <div class="item"><input class="visor" v-model="cargo"></div>
         </div>
-    </body>
+        <div class='row-container'>
+            <div class="texto">E-mail: </div>
+            <div class="item"><input class="visor" v-model="email"></div>
+        </div>
+        <div class='row-container'>
+            <div class="texto">Data de admissão: </div>
+            <div class="item"><input class="visor" v-model="admissao"></div>
+        </div>
+        <div class='row-container'>
+            <div class="texto">Salário bruto (em R$): </div>
+            <div class="item"><input class="visor" v-model="salario"></div>
+        </div>
+        <div class='row-container'>
+            <div class="texto">Descontos (em%): </div>
+            <div class="item"><input class="visor" v-model="desconto"></div>
+        </div>
+        <div class='row-container'>
+            <div class="item"><button class="visorOperacao" type="button" v-on:click="incluiFuncionario()">Incluir</button></div>
+        </div>
+    </div>
+
+    </div>
+    <script>
+        var inputFuncionarios = new Vue({
+            el: '#inputFuncionarios',
+            data: {
+                message: 'Hello Vue.js!',
+                nome: '',
+                sobrenome: '',
+                cargo: '',
+                email: '',
+                admissao: '',
+                salario: '',
+                desconto: '',
+                funcionarioList: []
+            },
+            methods: {
+                incluiFuncionario: function () {
+
+                    if (localStorage.getItem("lista_dados_envio")) {
+
+                        this.funcionarioList = JSON.parse(localStorage.getItem("lista_dados_envio"))
+                    }
+
+                    let novoFuncionario = new Funcionario();
+                    novoFuncionario.nome = this.nome;
+                    novoFuncionario.sobrenome = this.sobrenome;
+                    novoFuncionario.cargo = this.cargo;
+                    novoFuncionario.email = this.email;
+                    novoFuncionario.admissao = this.admissao;
+                    novoFuncionario.salario = this.salario;
+                    novoFuncionario.desconto = this.desconto;
+
+                    this.funcionarioList.push(novoFuncionario);
+                    localStorage.setItem("lista_dados_envio", JSON.stringify(this.funcionarioList));
+                    this.clearData();
+                },
+                clearData: function () {
+                    this.nome = '';
+                    this.sobrenome = '';
+                    this.cargo = '';
+                    this.email = '';
+                    this.admissao = '';
+                    this.salario = '';
+                    this.desconto = '';
+                }
+            }
+        })
+
+        function Funcionario() {
+            this.nome = '';
+            this.sobrenome = '';
+            this.cargo = '';
+            this.email = '';
+            this.admissao = '';
+            this.salario = '';
+            this.desconto = '';
+        }
+    </script>
+</body>
+
 </head>
 <footer>
     <p>Feito por: Rubens David Alvares da Silva </p>

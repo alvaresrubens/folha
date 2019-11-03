@@ -9,77 +9,77 @@
     <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" type="text/css" href="geral.css" />
 
-    <body>
-        <fieldset>
-            <div>Calculadora 2.0 - CIN7928-06342B (20192) - Tópicos Especiais em Informação e Tecnologia </div>
+<body>
+    <fieldset>
+        <div>Calculadora 2.0 - CIN7928-06342B (20192) - Tópicos Especiais em Informação e Tecnologia </div>
 
-        </fieldset>
+    </fieldset>
 
-        <div class="container">
-            <div class='row-container'>
-                <div> <a class="menu" href="calculadora.html">Calculadora</a> </div>
-                <div> <a class="menu" href="folha.html">Folha de pagamento </a> </div>
+    <div class="container">
+        <div class='row-container'>
+            <div> <a class="menu" href="calculadora.html">Calculadora</a> </div>
+            <div> <a class="menu" href="folha.html">Folha de pagamento </a> </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="texto">Cadastro de Funcionário </div>
+    </div>
+    <div class="container">
+        <div class='row-container'>
+            <div> <a class="visorOperacao" href="folha.html">Incluir funcionários</a> </div>
+            <div> <a class="visorOperacao" href="visualizar_funcionarios.html">Visualizar funcionários</a> </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="table-row header">
+            <div class="text">Nome</div>
+            <div class="text">Sobrenome</div>
+            <div class="text">Cargo</div>
+            <div class="text">E-mail</div>
+            <div class="num">Data de admissão</div>
+            <div class="num">Anos de empresa</div>
+            <div class="num">Salário Bruto</div>
+            <div class="num">Salário Líquido</div>
+        </div>
+        <div id="resultado">
+            <div class="table-row" v-for="funcionario in funcionarioList">
+                <div class="text" id="nome">{{funcionario.nome}}</div>
+                <div class="text" id="sobrenome">{{funcionario.sobrenome}}</div>
+                <div class="text" id="cargo">{{funcionario.cargo}}</div>
+                <div class="text" id="email">{{funcionario.email}}</div>
+                <div class="num" id="admissao">{{funcionario.admissao}}</div>
+                <div class="num" id="anos">{{funcionario.admissao}}</div>
+                <div class="num" id="bruto">{{funcionario.salario}}</div>
+                <div class="num" id="liquido">{{funcionario.desconto}}</div>
             </div>
         </div>
-        <div class="container">
-            <div class="texto">Cadastro de Funcionário </div>
+
+    </div>
+
+    <div class="container">
+        <div class='row-container'>
+            <div class="item"><button class="visorOperacao" type="button" onclick="salvarDados()">Incluir</button></div>
         </div>
-        <div class="container">
-            <div class='row-container'>
-                <div> <a class="visorOperacao" href="folha.html">Incluir funcionários</a> </div>
-                <div> <a class="visorOperacao" href="visualizar_funcionarios.html">Visualizar funcionários</a> </div>
+    </div>
+    </div>
 
-            </div>
-        </div>
+    <script>
+        var result = new Vue({
+            el: "#resultado",
+            data: {
+                funcionarioList: [],
+            },
+            mounted() {
 
-        <div class="container">
-
-            <div class="table-row header">
-                <div class="text">Nome</div>
-                <div class="text">Sobrenome</div>
-                <div class="text">Cargo</div>
-                <div class="text">E-mail</div>
-                <div class="num">Data de admissão</div>
-                <div class="num">Anos de empresa</div>
-                <div class="num">Salário Bruto</div>
-                <div class="num">Salário Líquido</div>
-            </div>
-            <div id="resultado">
-                <div class="table-row" v-for="funcionario in funcionarioList">
-                    <div class="text" id="nome">{{funcionario.nome}}</div>
-                    <div class="text" id="sobrenome">{{funcionario.sobrenome}}</div>
-                    <div class="text" id="cargo">{{funcionario.cargo}}</div>
-                    <div class="text" id="email">{{funcionario.email}}</div>
-                    <div class="num" id="admissao">{{funcionario.admissao}}</div>
-                    <div class="num" id="anos">{{funcionario.admissao}}</div>
-                    <div class="num" id="bruto">{{funcionario.salario}}</div>
-                    <div class="num" id="liquido">{{funcionario.desconto}}</div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="container">
-            <div class='row-container'>
-                <div class="item"><button class="visorOperacao" type="button" onclick="salvarDados()">Incluir</button></div>
-            </div>
-        </div>
-        </div>
-
-        <script>
-            var result = new Vue({
-                el: "#resultado",
-                data: {
-                    funcionarioList: [],
-                },
-                mounted() {
-
-                    this.funcionarioList = JSON.parse(localStorage.getItem("lista_dados_envio"))
-                    console.log("loaded! :D")
-                }
-            })
-        </script>
-    </body>
+                this.funcionarioList = JSON.parse(localStorage.getItem("lista_dados_envio"))
+                console.log("loaded! :D")
+            }
+        })
+    </script>
+</body>
 
 </head>
 <footer>

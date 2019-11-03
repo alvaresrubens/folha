@@ -1,0 +1,61 @@
+<html>
+
+
+<head>
+    <title>
+        Calculadora 2.0
+    </title>
+    <script type="text/javascript" src="calculadora.js"></script>
+    <link rel="stylesheet" type="text/css" href="geral.css" />
+
+    <body>
+        <fieldset>
+            <div>Calculadora 2.0 - CIN7928-06342B (20192) - Tópicos Especiais em Informação e Tecnologia </div>
+        </fieldset>
+
+        <div class="container">
+            <div class='row-container'>
+                <div> <a class="menu" href="calculadora.html">Calculadora</a> </div>
+                <div> <a class="menu" href="folha.html">Folha de pagamento </a> </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class='row-container'>
+                <div class="item"><input class="visorOperacao" id="visorOperacao" disabled="disabled" type="text"></div>
+            </div>
+            <div class='row-container'>
+                <div class="item"><input class="visor" id="visor" disabled="disabled" type="text"></div>
+            </div>
+            <div class='row-container'>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(7)">7</button></div>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(8)">8</button></div>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(9)">9</button></div>
+                <div class="item"><button class="funcao" type="button" onclick="teclaFuncao('/')">&divide</button></div>
+            </div>
+            <div class='row-container'>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(4)">4</button></div>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(5)">5</button></div>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(6)">6</button></div>
+                <div class="item"><button class="funcao" type="button" onclick="teclaFuncao('*')">x</button></div>
+            </div>
+            <div class='row-container'>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(1)">1</button></div>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(2)">2</button></div>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(3)">3</button></div>
+                <div class="item"><button class="funcao" type="button" onclick="teclaFuncao('-')">-</button></div>
+            </div>
+            <div class='row-container'>
+                <div class="item"><button class="numero" type="button" onclick="teclaNumerica(0)">0</button></div>
+                <div class="item"><button class="funcao" type="button" onclick="limpar()">AC</button></div>
+                <div class="item"><button class="funcao" type="button" onclick="igual()">=</button></div>
+                <div class="item"><button class="funcao" type="button" onclick="teclaFuncao('+')">+</button></div>
+            </div>
+        </div>
+    </body>
+</head>
+<footer>
+    <p>Feito por: Rubens David Alvares da Silva </p>
+</footer>
+
+</html>

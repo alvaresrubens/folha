@@ -5,6 +5,7 @@ var resultado;
 
 
 
+
 function teclaNumerica(numero) {
 
     if (resultado == null) {

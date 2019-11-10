@@ -35,6 +35,7 @@
     <div class="container">
 
         <div class="table-row header">
+            <div class="text">CPF</div>
             <div class="text">Nome</div>
             <div class="text">Sobrenome</div>
             <div class="text">Cargo</div>
@@ -43,9 +44,13 @@
             <div class="num">Anos de empresa</div>
             <div class="num">Salário Bruto</div>
             <div class="num">Salário Líquido</div>
+            <div class="num">Apagar</div>
+            <div class="num">Editar</div>
+
         </div>
         <div id="resultado">
             <div class="table-row" v-for="funcionario in funcionarioList">
+                <div class="text" id="cpf">{{funcionario.cpf}}</div>
                 <div class="text" id="nome">{{funcionario.nome}}</div>
                 <div class="text" id="sobrenome">{{funcionario.sobrenome}}</div>
                 <div class="text" id="cargo">{{funcionario.cargo}}</div>
@@ -54,6 +59,11 @@
                 <div class="num" id="anos">{{funcionario.admissao}}</div>
                 <div class="num" id="bruto">{{funcionario.salario}}</div>
                 <div class="num" id="liquido">{{funcionario.desconto}}</div>
+                <div class="item"><button class="funcao" type="button" onclick="teclaFuncao('/')"><img
+                            src="https://img.icons8.com/material-sharp/24/000000/full-trash.png"></button></div>
+                <div class="item"><button class="funcao" type="button" onclick="teclaFuncao('/')"><img
+                            src="https://img.icons8.com/android/24/000000/edit.png"></button></div>
+
             </div>
         </div>
 

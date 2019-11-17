@@ -20,6 +20,7 @@ fieldset {
     align-items: center;
     width: 100vw;
     flex-wrap: nowrap;
+    justify-items: stretch;
 }
 
 .row-container {
@@ -298,6 +299,7 @@ footer {
     color: black;
     font-family: Arial;
     text-align: center;
+    
 }
 
 .table-row {
@@ -315,3 +317,16 @@ footer {
     padding-bottom: 8px;
     align-content: space-around;
 }
+
+
+.table-container {
+    display: block;
+    margin: 2em auto;
+    width: 90vw;
+    
+    justify-items: flex-end;
+  }
+  
+
+
+

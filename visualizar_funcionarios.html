@@ -26,7 +26,7 @@
     </div>
     </div>
 
-    <div class="container">
+    <div class="table-container">
 
         <div class="table-row header">
             <div class="text">CPF</div>
@@ -38,26 +38,28 @@
             <div class="text">Anos de empresa</div>
             <div class="text">Salário Bruto</div>
             <div class="text">Salário Líquido</div>
+            <div class="text">Deletar</div>
+            <div class="text">Editar</div>
 
 
         </div>
-    </div>
-    <div id="resultado">
-        <div class="table-row" v-for="funcionario in funcionarioList">
-            <div class="text" id="cpf">{{funcionario.cpf}}</div>
-            <div class="text" id="nome">{{funcionario.nome}}</div>
-            <div class="text" id="sobrenome">{{funcionario.sobrenome}}</div>
-            <div class="text" id="cargo">{{funcionario.cargo}}</div>
-            <div class="text" id="email">{{funcionario.email}}</div>
-            <div class="text" id="admissao">{{funcionario.admissao}}</div>
-            <div class="text" id="anos">{{calculaAnos(funcionario.admissao)}}</div>
-            <div class="text" id="bruto">R${{funcionario.salario}}</div>
-            <div class="num" id="liquido">R${{salarioLiquido(funcionario.salario, funcionario.desconto)}}</div>
-            <div class="item"><button class="funcao" type="button" v-on:click="deletaFuncionario(funcionario)"><img
-                        src="lixo.png"></button></div>
-            <div class="item"><button class="funcao" type="button" v-on:click="editaFuncionario(funcionario)"><img
-                        src="editar.png"></button></div>
+        <div id="resultado">
+            <div class="table-row" v-for="funcionario in funcionarioList">
+                <div class="text" id="cpf">{{funcionario.cpf}}</div>
+                <div class="text" id="nome">{{funcionario.nome}}</div>
+                <div class="text" id="sobrenome">{{funcionario.sobrenome}}</div>
+                <div class="text" id="cargo">{{funcionario.cargo}}</div>
+                <div class="text" id="email">{{funcionario.email}}</div>
+                <div class="text" id="admissao">{{funcionario.admissao}}</div>
+                <div class="text" id="anos">{{calculaAnos(funcionario.admissao)}}</div>
+                <div class="text" id="bruto">R${{funcionario.salario}}</div>
+                <div class="text" id="liquido">R${{salarioLiquido(funcionario.salario, funcionario.desconto)}}</div>
+                <div class="text"><button class="funcao" type="button" v-on:click="deletaFuncionario(funcionario)"><img
+                            src="lixo.png" title="Deletar"></button></div>
+                <div class="text"><button class="funcao" type="button" v-on:click="editaFuncionario(funcionario)"><img
+                            src="editar.png" title="Deletar"></button></div>
 
+            </div>
         </div>
     </div>
 

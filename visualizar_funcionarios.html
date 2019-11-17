@@ -88,8 +88,9 @@
 
                 },
                 editaFuncionario: function (funcionario) {
-
-                    widow.open(folha.html);
+                    var funcionarioEditar = JSON.stringify(funcionario);
+                    localStorage.setItem("funcionarioEditar", funcionarioEditar);
+                    window.location.replace("folha.html");
                 },
                 salarioLiquido: function (salario, desconto) {
 

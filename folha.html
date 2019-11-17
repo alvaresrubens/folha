@@ -1,6 +1,5 @@
 <html>
 
-
 <head>
     <title>
         Calculadora 2.0
@@ -9,131 +8,157 @@
     <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" type="text/css" href="geral.css" />
 
-    <body>
-        <fieldset>
-            <div>Calculadora 2.0 - CIN7928-06342B (20192) - Tópicos Especiais em Informação e Tecnologia </div>
+<body>
+    <fieldset>
+        <div>Calculadora 2.0 - CIN7928-06342B (20192) - Tópicos Especiais em Informação e Tecnologia </div>
 
-        </fieldset>
+    </fieldset>
 
-        <div class="container">
-            <div class='row-container'>
-                <div> <a class="menu" href="calculadora.html">Calculadora</a> </div>
-                <div> <a class="menu" href="folha.html">Folha de pagamento </a> </div>
+    <div class="container">
+        <div class='row-container'>
+            <div> <a class="menu" href="calculadora.html">Calculadora</a> </div>
+            <div> <a class="menu" href="folha.html">Folha de pagamento </a> </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="texto">Cadastro de Funcionário </div>
+    </div>
+    <div class="container">
+        <div class='row-container'>
+            <div> <a class="visorOperacao" href="folha.html">Incluir funcionários</a> </div>
+            <div> <a class="visorOperacao" href="visualizar_funcionarios.html">Visualizar funcionários</a> </div>
+
+        </div>
+    </div>
+
+    <div class="container" id="inputFuncionarios">
+
+
+
+        <div class="row-container">
+
+            <div class="containerFuncionario">
+                <div class="texto">CPF: </div>
+                <div class="texto">Nome: </div>
+                <div class="texto">Sobrenome: </div>
+                <div class="texto">Cargo: </div>
+                <div class="texto">E-mail: </div>
+                <div class="texto">Data de admissão: </div>
+                <div class="texto">Salário bruto (em R$): </div>
+                <div class="texto">Descontos (em%): </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="texto">Cadastro de Funcionário </div>
-        </div>
-        <div class="container">
-            <div class='row-container'>
-                <div> <a class="visorOperacao" href="folha.html">Incluir funcionários</a> </div>
-                <div> <a class="visorOperacao" href="visualizar_funcionarios.html">Visualizar funcionários</a> </div>
 
-            </div>
-        </div>
-
-        <div class="container" id="inputFuncionarios">
-
-
-
-            <div class="row-container">
-
-                <div class="containerFuncionario">
-                    <div class="texto">CPF: </div>
-                    <div class="texto">Nome: </div>
-                    <div class="texto">Sobrenome: </div>
-                    <div class="texto">Cargo: </div>
-                    <div class="texto">E-mail: </div>
-                    <div class="texto">Data de admissão: </div>
-                    <div class="texto">Salário bruto (em R$): </div>
-                    <div class="texto">Descontos (em%): </div>
-                </div>
-
-                <div class="containerFuncionario">
-                    <div class="item"><input class="visor-folha" v-model="cpf" required></div>
-                    <div class="item"><input class="visor-folha" v-model="nome"></div>
-                    <div class="item"><input class="visor-folha" v-model="sobrenome"></div>
-                    <div class="item"><input class="visor-folha" v-model="cargo"></div>
-                    <div class="item"><input class="visor-folha" v-model="email"></div>
-                    <div class="item"><input type="date" name="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1980-01-01" class="visor-folha" v-model="admissao"></div>
-                    <div class="item"><input class="visor-folha" v-model="salario"></div>
-                    <div class="item"><input class="visor-folha" v-model="desconto"></div>
-
-                </div>
-                <div class="containerFuncionario">
-                    <div class="item"><button class="visorOperacao" type="submit" v-on:click="incluiFuncionario()">Incluir</button></div>
-                </div>
+            <div class="containerFuncionario">
+                <div class="item"><input class="visor-folha" v-model="cpf" required></div>
+                <div class="item"><input class="visor-folha" v-model="nome"></div>
+                <div class="item"><input class="visor-folha" v-model="sobrenome"></div>
+                <div class="item"><input class="visor-folha" v-model="cargo"></div>
+                <div class="item"><input class="visor-folha" v-model="email"></div>
+                <div class="item"><input type="date" name="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"
+                        min="1980-01-01" class="visor-folha" v-model="admissao"></div>
+                <div class="item"><input class="visor-folha" v-model="salario"></div>
+                <div class="item"><input class="visor-folha" v-model="desconto"></div>
 
             </div>
+            <div class="containerFuncionario">
+                <div class="item"><button class="visorOperacao" type="submit"
+                        v-on:click="incluiFuncionario()">Incluir</button></div>
+            </div>
+
         </div>
-        </div>
-        <script>
-            var inputFuncionarios = new Vue({
-                el: '#inputFuncionarios',
-                data: {
-                    message: 'Hello Vue.js!',
-                    cpf: '',
-                    nome: '',
-                    sobrenome: '',
-                    cargo: '',
-                    email: '',
-                    admissao: '',
-                    salario: '',
-                    desconto: '',
-                    funcionarioList: []
-                },
-                methods: {
-                    incluiFuncionario: function() {
-                        if (localStorage.getItem("lista_dados_envio")) {
-                            this.funcionarioList = JSON.parse(localStorage.getItem("lista_dados_envio"))
-                        }
-                        let novoFuncionario = new Funcionario();
-                        novoFuncionario.cpf = this.cpf;
-                        novoFuncionario.nome = this.nome;
-                        novoFuncionario.sobrenome = this.sobrenome;
-                        novoFuncionario.cargo = this.cargo;
-                        novoFuncionario.email = this.email;
-                        novoFuncionario.admissao = this.admissao;
-                        novoFuncionario.salario = this.salario;
-                        novoFuncionario.desconto = this.desconto;
-
-                        for (let funcionarioAux in this.funcionarioList) {
-
-                            if (this.funcionarioList[funcionarioAux].cpf == this.cpf) {
-                                alert("Funcionario já presente na base de dados");
-                                return;
-                            }
-
-                        }
-                        this.funcionarioList.push(novoFuncionario);
-                        localStorage.setItem("lista_dados_envio", JSON.stringify(this.funcionarioList));
-                        this.clearData();
-                    },
-                    clearData: function() {
-                        this.cpf = '';
-                        this.nome = '';
-                        this.sobrenome = '';
-                        this.cargo = '';
-                        this.email = '';
-                        this.admissao = '';
-                        this.salario = '';
-                        this.desconto = '';
+    </div>
+    </div>
+    <script>
+        var inputFuncionarios = new Vue({
+            el: '#inputFuncionarios',
+            data: {
+                message: 'Hello Vue.js!',
+                cpf: '',
+                nome: '',
+                sobrenome: '',
+                cargo: '',
+                email: '',
+                admissao: '',
+                salario: '',
+                desconto: '',
+                isEdition: false,
+                funcionarioList: []
+            },
+            methods: {
+                incluiFuncionario: function () {
+                    if (localStorage.getItem("lista_dados_envio")) {
+                        this.funcionarioList = JSON.parse(localStorage.getItem("lista_dados_envio"))
                     }
-                }
-            })
+                    let novoFuncionario = new Funcionario();
+                    novoFuncionario.cpf = this.cpf;
+                    novoFuncionario.nome = this.nome;
+                    novoFuncionario.sobrenome = this.sobrenome;
+                    novoFuncionario.cargo = this.cargo;
+                    novoFuncionario.email = this.email;
+                    novoFuncionario.admissao = this.admissao;
+                    novoFuncionario.salario = this.salario;
+                    novoFuncionario.desconto = this.desconto;
 
-            function Funcionario() {
-                this.cpf = '';
-                this.nome = '';
-                this.sobrenome = '';
-                this.cargo = '';
-                this.email = '';
-                this.admissao = '';
-                this.salario = '';
-                this.desconto = '';
+                    for (let funcionarioAux in this.funcionarioList) {
+
+                        if (this.funcionarioList[funcionarioAux].cpf == this.cpf && !this.isEdition) {
+                            alert("Funcionario já presente na base de dados");
+                            return;
+                        }
+                        if (this.isEdition) {
+                            this.funcionarioList.splice(funcionarioAux, 1);
+                        }
+
+                    }
+                    this.funcionarioList.push(novoFuncionario);
+                    localStorage.setItem("lista_dados_envio", JSON.stringify(this.funcionarioList));
+                    this.clearData();
+                },
+                clearData: function () {
+                    this.cpf = '';
+                    this.nome = '';
+                    this.sobrenome = '';
+                    this.cargo = '';
+                    this.email = '';
+                    this.admissao = '';
+                    this.salario = '';
+                    this.desconto = '';
+                },
+
+            }, mounted() {
+
+                var editarFuncionario = localStorage.getItem("funcionarioEditar");
+
+                if (editarFuncionario) {
+                    this.isEdition = true;
+                    var editarFuncionario = JSON.parse(editarFuncionario);
+                    this.cpf = editarFuncionario.cpf;
+                    this.nome = editarFuncionario.nome;
+                    this.sobrenome = editarFuncionario.sobrenome;
+                    this.cargo = editarFuncionario.cargo;
+                    this.email = editarFuncionario.email;
+                    this.admissao = editarFuncionario.admissao;
+                    this.salario = editarFuncionario.salario;
+                    this.desconto = editarFuncionario.desconto;
+                    localStorage.removeItem("funcionarioEditar");
+
+                }
             }
-        </script>
-    </body>
+        })
+
+        function Funcionario() {
+            this.cpf = '';
+            this.nome = '';
+            this.sobrenome = '';
+            this.cargo = '';
+            this.email = '';
+            this.admissao = '';
+            this.salario = '';
+            this.desconto = '';
+
+        }
+    </script>
+</body>
 
 </head>
 <footer>

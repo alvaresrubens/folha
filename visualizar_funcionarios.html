@@ -40,12 +40,11 @@
             <div class="text">Sobrenome</div>
             <div class="text">Cargo</div>
             <div class="text">E-mail</div>
-            <div class="num">Data de admissão</div>
-            <div class="num">Anos de empresa</div>
-            <div class="num">Salário Bruto</div>
-            <div class="num">Salário Líquido</div>
-            <div class="num">Apagar</div>
-            <div class="num">Editar</div>
+            <div class="text">Data de admissão</div>
+            <div class="text">Anos de empresa</div>
+            <div class="text">Salário Bruto</div>
+            <div class="text">Salário Líquido</div>
+
 
         </div>
         <div id="resultado">
@@ -55,37 +54,60 @@
                 <div class="text" id="sobrenome">{{funcionario.sobrenome}}</div>
                 <div class="text" id="cargo">{{funcionario.cargo}}</div>
                 <div class="text" id="email">{{funcionario.email}}</div>
-                <div class="num" id="admissao">{{funcionario.admissao}}</div>
-                <div class="num" id="anos">{{funcionario.admissao}}</div>
-                <div class="num" id="bruto">{{funcionario.salario}}</div>
-                <div class="num" id="liquido">{{funcionario.desconto}}</div>
-                <div class="item"><button class="funcao" type="button" onclick="teclaFuncao('/')"><img
-                            src="https://img.icons8.com/material-sharp/24/000000/full-trash.png"></button></div>
-                <div class="item"><button class="funcao" type="button" onclick="teclaFuncao('/')"><img
-                            src="https://img.icons8.com/android/24/000000/edit.png"></button></div>
+                <div class="text" id="admissao">{{funcionario.admissao}}</div>
+                <div class="text" id="anos">{{calculaAnos(funcionario.admissao)}}</div>
+                <div class="text" id="bruto">R${{funcionario.salario}}</div>
+                <div class="num" id="liquido">R${{salarioLiquido(funcionario.salario, funcionario.desconto)}}</div>
+                <div class="item"><button class="funcao" type="button" v-on:click="deletaFuncionario(funcionario)"><img
+                            src="lixo.png"></button></div>
+                <div class="item"><button class="funcao" type="button" v-on:click="editaFuncionario(funcionario)"><img
+                            src="editar.png"></button></div>
 
             </div>
         </div>
 
     </div>
 
-    <div class="container">
-        <div class='row-container'>
-            <div class="item"><button class="visorOperacao" type="button" onclick="salvarDados()">Incluir</button></div>
-        </div>
-    </div>
+
     </div>
 
     <script>
         var result = new Vue({
             el: "#resultado",
+            methods: {
+                deletaFuncionario: function (funcionario) {
+
+                    for (let funcionarioAux in this.funcionarioList) {
+
+                        if (this.funcionarioList[funcionarioAux].cpf == funcionario.cpf) {
+                            this.funcionarioList.splice(funcionarioAux, 1);
+                            localStorage.setItem("lista_dados_envio", JSON.stringify(this.funcionarioList));
+                        }
+
+                    }
+
+                },
+                editaFuncionario: function (funcionario) {
+
+                    widow.open(folha.html);
+                },
+                salarioLiquido: function (salario, desconto) {
+
+                    return salario - salario * (desconto / 100);
+                },
+                calculaAnos: function (admissao) {
+                    var data1 = admissao.substring(0, 4);
+                    return (new Date().getFullYear()) - data1;
+                }
+            },
+
             data: {
                 funcionarioList: [],
             },
             mounted() {
 
                 this.funcionarioList = JSON.parse(localStorage.getItem("lista_dados_envio"))
-                console.log("loaded! :D")
+
             }
         })
     </script>

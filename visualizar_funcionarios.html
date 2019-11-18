@@ -9,108 +9,149 @@
     <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet" type="text/css" href="geral.css" />
 
-<body>
-    <fieldset>
-        <div>Calculadora 2.0 - CIN7928-06342B (20192) - Tópicos Especiais em Informação e Tecnologia </div>
+    <body>
+        <fieldset>
+            <div>Calculadora 2.0 - CIN7928-06342B (20192) - Tópicos Especiais em Informação e Tecnologia </div>
 
-    </fieldset>
+        </fieldset>
 
-    <div class="container">
-        <div class='row-container'>
-            <div> <a class="menu" href="calculadora.html">Calculadora</a> </div>
-            <div> <a class="menu" href="folha.html">Folha de pagamento </a> </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="texto">Cadastro de Funcionário </div>
-    </div>
-    </div>
-
-    <div class="table-container">
-
-        <div class="table-row header">
-            <div class="text">CPF</div>
-            <div class="text">Nome</div>
-            <div class="text">Sobrenome</div>
-            <div class="text">Cargo</div>
-            <div class="text">E-mail</div>
-            <div class="text">Data de admissão</div>
-            <div class="text">Anos de empresa</div>
-            <div class="text">Salário Bruto</div>
-            <div class="text">Salário Líquido</div>
-            <div class="text">Deletar</div>
-            <div class="text">Editar</div>
-
-
-        </div>
-        <div id="resultado">
-            <div class="table-row" v-for="funcionario in funcionarioList">
-                <div class="text" id="cpf">{{funcionario.cpf}}</div>
-                <div class="text" id="nome">{{funcionario.nome}}</div>
-                <div class="text" id="sobrenome">{{funcionario.sobrenome}}</div>
-                <div class="text" id="cargo">{{funcionario.cargo}}</div>
-                <div class="text" id="email">{{funcionario.email}}</div>
-                <div class="text" id="admissao">{{funcionario.admissao}}</div>
-                <div class="text" id="anos">{{calculaAnos(funcionario.admissao)}}</div>
-                <div class="text" id="bruto">R${{funcionario.salario}}</div>
-                <div class="text" id="liquido">R${{salarioLiquido(funcionario.salario, funcionario.desconto)}}</div>
-                <div class="text"><button class="funcao" type="button" v-on:click="deletaFuncionario(funcionario)"><img
-                            src="lixo.png" title="Deletar"></button></div>
-                <div class="text"><button class="funcao" type="button" v-on:click="editaFuncionario(funcionario)"><img
-                            src="editar.png" title="Deletar"></button></div>
-
+        <div class="container">
+            <div class='row-container'>
+                <div> <a class="menu" href="calculadora.html">Calculadora</a> </div>
+                <div> <a class="menu" href="folha.html">Folha de pagamento </a> </div>
             </div>
         </div>
-    </div>
+        <div class="container">
+            <div class="texto">Cadastro de Funcionário </div>
+        </div>
+        </div>
 
-    </div>
+        <div class="table">
+
+            <div class="tr th">
+                <div class="td">
+                    CPF
+                </div>
+                <div class="td">
+                    Nome
+                </div>
+                <div class="td">
+                    Sobrenome
+                </div>
+                <div class="td">
+                    Cargo
+                </div>
+                <div class="td">
+                    E-mail
+                </div>
+                <div class="td">
+                    Data de admissão
+                </div>
+                <div class="td">
+                    Anos de Empresa
+                </div>
+                <div class="td">
+                    Salário Bruto
+                </div>
+                <div class="td">
+                    Salário Líquido
+                </div>
+                <div class="td">
+                    Deletar
+                </div>
+                <div class="td">
+                    Editar
+                </div>
+
+            </div>
+            <div id="resultado">
+                <div class="tr" v-for="funcionario in funcionarioList">
+
+                    <div class="td" style="justify-content: center;">
+                        <span><div id="cpf">{{funcionario.cpf}}</div></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><div id="nome">{{funcionario.nome}}</div></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><div id="sobrenome">{{funcionario.sobrenome}}</div></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><div id="cargo">{{funcionario.cargo}}</div></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><div id="email">{{funcionario.email}}</div></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><div id="admissao">{{funcionario.admissao}}</div></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><div id="anos">{{calculaAnos(funcionario.admissao)}}</div></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><div id="salario">R${{funcionario.salario}}</div></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><div id="liquido">R${{salarioLiquido(funcionario.salario, funcionario.desconto)}}</div></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><img src="lixo.png" v-on:click="deletaFuncionario(funcionario)" title="Apagar registro"/></span>
+                    </div>
+                    <div class="td" style="justify-content: center;">
+                        <span><img src="editar.png" v-on:click="editaFuncionario(funcionario)" title="Alterar registro"/></span>
+                    </div>
 
 
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <script>
+            var result = new Vue({
+                el: "#resultado",
+                methods: {
+                    deletaFuncionario: function(funcionario) {
+                        var deletar = confirm("Deseja realmente excluir esse funcionário? Atenção: Essa ação é irreversível e todos os dados serão perdidos!");
+                        if (deletar == true) {
+                            for (let funcionarioAux in this.funcionarioList) {
 
-    </div>
+                                if (this.funcionarioList[funcionarioAux].cpf == funcionario.cpf) {
+                                    this.funcionarioList.splice(funcionarioAux, 1);
+                                    localStorage.setItem("lista_dados_envio", JSON.stringify(this.funcionarioList));
+                                }
 
-    <script>
-        var result = new Vue({
-            el: "#resultado",
-            methods: {
-                deletaFuncionario: function (funcionario) {
+                            }
 
-                    for (let funcionarioAux in this.funcionarioList) {
-
-                        if (this.funcionarioList[funcionarioAux].cpf == funcionario.cpf) {
-                            this.funcionarioList.splice(funcionarioAux, 1);
-                            localStorage.setItem("lista_dados_envio", JSON.stringify(this.funcionarioList));
                         }
 
+                    },
+                    editaFuncionario: function(funcionario) {
+                        var funcionarioEditar = JSON.stringify(funcionario);
+                        localStorage.setItem("funcionarioEditar", funcionarioEditar);
+                        window.location.replace("folha.html");
+                    },
+                    salarioLiquido: function(salario, desconto) {
+
+                        return salario - salario * (desconto / 100);
+                    },
+                    calculaAnos: function(admissao) {
+                        var data1 = admissao.substring(0, 4);
+                        return (new Date().getFullYear()) - data1;
                     }
+                },
 
+                data: {
+                    funcionarioList: [],
                 },
-                editaFuncionario: function (funcionario) {
-                    var funcionarioEditar = JSON.stringify(funcionario);
-                    localStorage.setItem("funcionarioEditar", funcionarioEditar);
-                    window.location.replace("folha.html");
-                },
-                salarioLiquido: function (salario, desconto) {
+                mounted() {
 
-                    return salario - salario * (desconto / 100);
-                },
-                calculaAnos: function (admissao) {
-                    var data1 = admissao.substring(0, 4);
-                    return (new Date().getFullYear()) - data1;
+                    this.funcionarioList = JSON.parse(localStorage.getItem("lista_dados_envio"))
+
                 }
-            },
-
-            data: {
-                funcionarioList: [],
-            },
-            mounted() {
-
-                this.funcionarioList = JSON.parse(localStorage.getItem("lista_dados_envio"))
-
-            }
-        })
-    </script>
-</body>
+            })
+        </script>
+    </body>
 
 </head>
 <footer>
